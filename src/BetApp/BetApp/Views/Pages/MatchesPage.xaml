@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BetApp"
+             xmlns:core="clr-namespace:BetApp.Core;assembly=BetApp.Core"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="BetApp.MatchesPage"
+             
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             
+             BackgroundColor="{DynamicResource SecondaryBackgroundColour}">
+
+    <Grid RowDefinitions="100,40,*" BackgroundColor="Transparent" RowSpacing="0">
+        <local:AppBar VerticalOptions="Start"/>
+
+        <BoxView Grid.Row="2" CornerRadius="35,35,0,0" BackgroundColor="{DynamicResource PrimaryBackgroundColour}"/>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding AllSportNames}"
+                        VerticalOptions="Start" HeightRequest="40">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.Header>
+                <StackLayout Spacing="0" Orientation="Horizontal">
+                    <BoxView HorizontalOptions="Start" WidthRequest="30" BackgroundColor="Transparent"/>
+                    <local:TabItem x:Name="tabItem" Text="HOME" BindingContext="{x:Null}"
+                                   IsSelected="{Binding Source={RelativeSource AncestorType={x:Type core:MatchesPageViewModel}}, Path=SelectedSport, 
+                                                        Converter={StaticResource SelectionConverter}, ConverterParameter={x:Reference tabItem}}">
+                        <local:TabItem.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type core:MatchesPageViewModel}}, Path=SportSelectedCommand}"
+                                                  CommandParameter="{Binding .}"/>
+                        </local:TabItem.GestureRecognizers>
+                    </local:TabItem>
+                </StackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.Footer>
+                <BoxView HorizontalOptions="Start" WidthRequest="30" BackgroundColor="Transparent"/>
+            </CollectionView.Footer>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView>
+                        <local:TabItem x:Name="tabItem" Text="{Binding .}" Margin="5,0,0,0"
+                                       IsSelected="{Binding Source={RelativeSource AncestorType={x:Type core:MatchesPageViewModel}}, Path=SelectedSport, 
+                                                            Converter={StaticResource SelectionConverter}, ConverterParameter={x:Reference tabItem}}">
+                            <local:TabItem.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type core:MatchesPageViewModel}}, Path=SportSelectedCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </local:TabItem.GestureRecognizers>
+                        </local:TabItem>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <CollectionView x:Name="collectionView" Grid.Row="2"
+                        ItemsSource="{Binding SportMatches}"
+                        IsGrouped="True"
+                        Margin="25,0">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ContentView>
+                        <Label Margin="0,5" Text="{Binding Name}" FontSize="18"/>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView>
+                        <Grid ColumnDefinitions="*,50,*" Margin="0,10">
+                            <BoxView BackgroundColor="#f5f6f9" CornerRadius="15" Grid.ColumnSpan="3"/>
+                            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="0,25">
+                                <ff:CachedImage Source="{Binding FirstTeam.Image, Converter={StaticResource FFImageSourceConverter}}" 
+                                                VerticalOptions="Center" HorizontalOptions="Center"
+                                                HeightRequest="30" WidthRequest="30"/>
+                                <Label Text="{Binding FirstTeam.Name}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <Frame Grid.Column="1" BorderColor="LightGray" HasShadow="False" BackgroundColor="{DynamicResource PrimaryBackgroundColour}" CornerRadius="5"
+                                   VerticalOptions="Center" HeightRequest="25" Padding="0">
+                                <Label Text="VS" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" FontAttributes="None"/>
+                            </Frame>
+                            <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,25">
+                                <ff:CachedImage Source="{Binding SecondTeam.Image, Converter={StaticResource FFImageSourceConverter}}" 
+                                                VerticalOptions="Center" HorizontalOptions="Center"
+                                                HeightRequest="30" WidthRequest="30"/>
+                                <Label Text="{Binding SecondTeam.Name}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type core:MatchesPageViewModel}}, Path=GoToMatchDetailCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.Header>
+                <BoxView VerticalOptions="Start" HeightRequest="25"/>
+            </CollectionView.Header>
+            <CollectionView.Footer>
+                <BoxView VerticalOptions="Start" HeightRequest="90"/>
+            </CollectionView.Footer>
+        </CollectionView>
+
+        <BoxView Grid.Row="2" BackgroundColor="{DynamicResource SecondaryBackgroundColour}" VerticalOptions="Start" HeightRequest="36"
+                 Clip="{Binding CollectionViewClip, Source={RelativeSource AncestorType={x:Type local:MatchesPage}}}"/>
+    </Grid>
+</ContentPage>

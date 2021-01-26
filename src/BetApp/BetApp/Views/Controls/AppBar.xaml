@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BetApp"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="BetApp.AppBar">
+
+    <Grid Padding="{x:Static local:StatusBar.Padding}" Margin="0,10,0,0">
+        <ff:CachedImage Source="{Binding Source={RelativeSource AncestorType={x:Type local:AppBar}}, Path=BetLogoImage, Converter={StaticResource FFImageSourceConverter}}"
+                        HorizontalOptions="Start" VerticalOptions="Center"
+                        Margin="24,0,0,0" HeightRequest="20"/>
+
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="End" VerticalOptions="Center">
+            <Path Data="{StaticResource MagnifyingGlassGeometry}" Fill="#ffffff" Aspect="Uniform"
+                  VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+
+            <Frame Padding="0" CornerRadius="18" BackgroundColor="Transparent" Margin="20,0,24,0"
+                   HorizontalOptions="Center" VerticalOptions="Center" 
+                   HeightRequest="36" WidthRequest="36">
+                <ff:CachedImage Source="{Binding Source={RelativeSource AncestorType={x:Type local:AppBar}}, Path=AvatarImage, Converter={StaticResource FFImageSourceConverter}}"/>
+            </Frame>
+        </StackLayout>
+    </Grid>
+</ContentView>

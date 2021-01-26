@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+             xmlns:local="clr-namespace:BetApp"
+             
+             x:Class="BetApp.TabBarView">
+
+    <Grid x:Name="mainGrid" ColumnDefinitions="*,*,*,*" Margin="10,0">
+        <Grid.Resources>
+            <sh:SingleShade x:Key="Shade"
+                            BlurRadius="30"
+                            Opacity="0.25"
+                            Offset="0,20"
+                            Color="#2e2545" />
+            
+            <Style x:Key="IconGridStyle" TargetType="{x:Type Grid}">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="50"/>
+            </Style>
+            
+            <Style x:Key="BasePathStyle" TargetType="{x:Type Path}">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="25"/>
+                <Setter Property="WidthRequest" Value="25"/>
+                <Setter Property="Aspect" Value="Uniform"/>
+            </Style>
+            <Style x:Key="SelectedPathStyle" TargetType="{x:Type Path}" BasedOn="{StaticResource BasePathStyle}">
+                <Setter Property="Fill" Value="{DynamicResource PrimaryBackgroundBrush}"/>
+            </Style>
+            <Style x:Key="DefaultPathStyle" TargetType="{x:Type Path}" BasedOn="{StaticResource BasePathStyle}">
+                <Setter Property="Fill" Value="{DynamicResource IconGrayBrush}"/>
+            </Style>
+            
+            <Style x:Key="SelectedShadowsStyle" TargetType="{x:Type sh:Shadows}">
+                <Setter Property="Shades" Value="{StaticResource Shade}"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="50"/>
+            </Style>
+        </Grid.Resources>
+
+        <Grid x:Name="matchesGrid">
+            <Grid Style="{StaticResource IconGridStyle}">
+                <Ellipse Fill="{DynamicResource PrimaryBackgroundBrush}"/>
+                <Path Data="{StaticResource MatchIconGeometry}" Style="{StaticResource DefaultPathStyle}"/>
+            </Grid>
+            <sh:Shadows Style="{StaticResource SelectedShadowsStyle}">
+                <Grid Style="{StaticResource IconGridStyle}">
+                    <Ellipse Fill="{DynamicResource SecondaryBackgroundBrush}"/>
+                    <Path Data="{StaticResource MatchIconGeometry}" Style="{StaticResource SelectedPathStyle}"/>
+                </Grid>
+            </sh:Shadows>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="MatchesTapped"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+
+        <Grid Grid.Column="1" x:Name="calendarGrid">
+            <Grid Style="{StaticResource IconGridStyle}">
+                <Ellipse Fill="{DynamicResource PrimaryBackgroundBrush}"/>
+                <Path Data="{StaticResource CalendarGeometry}" Style="{StaticResource DefaultPathStyle}"/>
+            </Grid>
+            <sh:Shadows Style="{StaticResource SelectedShadowsStyle}">
+                <Grid Style="{StaticResource IconGridStyle}">
+                    <Ellipse Fill="{DynamicResource SecondaryBackgroundBrush}"/>
+                    <Path Data="{StaticResource CalendarGeometry}" Style="{StaticResource SelectedPathStyle}"/>
+                </Grid>
+            </sh:Shadows>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="CalendarTapped"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+
+        <Grid Grid.Column="2" x:Name="starGrid">
+            <Grid Style="{StaticResource IconGridStyle}">
+                <Ellipse Fill="{DynamicResource PrimaryBackgroundBrush}"/>
+                <Path Data="{StaticResource StarGeometry}" Style="{StaticResource DefaultPathStyle}"/>
+            </Grid>
+            <sh:Shadows Style="{StaticResource SelectedShadowsStyle}">
+                <Grid Style="{StaticResource IconGridStyle}">
+                    <Ellipse Fill="{DynamicResource SecondaryBackgroundBrush}"/>
+                    <Path Data="{StaticResource StarGeometry}" Style="{StaticResource SelectedPathStyle}"/>
+                </Grid>
+            </sh:Shadows>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="StarTapped"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+
+        <Grid Grid.Column="3" x:Name="cupGrid">
+            <Grid Style="{StaticResource IconGridStyle}">
+                <Ellipse Fill="{DynamicResource PrimaryBackgroundBrush}"/>
+                <Path Data="{StaticResource CupGeometry}" Style="{StaticResource DefaultPathStyle}"/>
+            </Grid>
+            <sh:Shadows Style="{StaticResource SelectedShadowsStyle}">
+                <Grid Style="{StaticResource IconGridStyle}">
+                    <Ellipse Fill="{DynamicResource SecondaryBackgroundBrush}"/>
+                    <Path Data="{StaticResource CupGeometry}" Style="{StaticResource SelectedPathStyle}"/>
+                </Grid>
+            </sh:Shadows>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="CupTapped"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+    </Grid>
+    
+</ContentView>
