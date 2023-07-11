@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+
+    x:Class="BetApp.Maui.Views.Controls.TabBarItem"
+
+    x:DataType="BaseShellItem">
+
+    <Grid>
+        <simpleCore:ContentButton
+            x:Name="button">
+            <simpleCore:Icon
+                x:Name="icon"
+                Source="{Binding Icon}"
+                TintColor="Black"/>
+        </simpleCore:ContentButton>
+    </Grid>
+</ContentView>
+

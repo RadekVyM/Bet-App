@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<simpleShell:SimpleShell
+    x:Class="BetApp.Maui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BetApp.Maui"
+    xmlns:pages="clr-namespace:BetApp.Maui.Views.Pages"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:simpleShell="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell"
+    xmlns:controls="clr-namespace:BetApp.Maui.Views.Controls"
+
+    x:Name="thisShell">
+
+    <Tab
+        Title="Matches"
+        Route="MatchesTab"
+        Icon="match_icon.png">
+        <ShellContent
+            Title="Matches"
+            ContentTemplate="{DataTemplate pages:MatchesPage}"
+            Route="MatchesPage" />
+    </Tab>
+    
+    <Tab
+        Title="Calendar"
+        Route="CalendarTab"
+        Icon="calendar_icon.png">
+        <ShellContent
+            Title="Calendar"
+            ContentTemplate="{DataTemplate pages:CalendarPage}"
+            Route="CalendarPage" />
+    </Tab>
+
+    <Tab
+        Title="Favorites"
+        Route="FavoritesTab"
+        Icon="star_icon.png">
+        <ShellContent
+            Title="Favorites"
+            ContentTemplate="{DataTemplate pages:FavoritesPage}"
+            Route="FavoritesPage" />
+    </Tab>
+    
+    <Tab
+        Title="Cup"
+        Route="CupTab"
+        Icon="cup_icon.png">
+        <ShellContent
+            Title="Cup"
+            ContentTemplate="{DataTemplate pages:CupPage}"
+            Route="CupPage" />
+    </Tab>
+
+    <simpleShell:SimpleShell.RootPageContainer>
+        <Grid>
+            <simpleShell:SimpleNavigationHost/>
+
+            <controls:TabBar
+                VerticalOptions="End"
+                HeightRequest="80"
+                ItemClicked="ItemClicked"
+                Items="{Binding ShellSections, Source={x:Reference thisShell}}"
+                SelectedItem="{Binding CurrentShellSection, Source={x:Reference thisShell}, Mode=OneWay}"/>
+        </Grid>
+    </simpleShell:SimpleShell.RootPageContainer>
+
+</simpleShell:SimpleShell>
+
