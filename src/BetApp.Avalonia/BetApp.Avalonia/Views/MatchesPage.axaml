@@ -1,0 +1,14 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="clr-namespace:BetApp.Avalonia.ViewModels"
+    x:Class="BetApp.Avalonia.Views.MatchesPage"
+    Foreground="White"
+    Background="#171C2C">
+
+    <StackPanel
+        HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Matches" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="GoToMatchDetailCommand" Command="{Binding GoToMatchDetailCommand}"/>
+    </StackPanel>
+</UserControl>

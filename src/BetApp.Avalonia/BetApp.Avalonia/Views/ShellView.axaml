@@ -1,0 +1,41 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="BetApp.Avalonia.Views.ShellView"
+    Foreground="White"
+    Background="#171C2C">
+    <Panel>
+        <Panel
+            x:Name="pageContainer"/>
+        <Button
+            Content="Back"
+            Click="BackClick"
+            VerticalAlignment="Top"
+            Margin="10, 40"/>
+        <Grid
+            x:Name="tabBar"
+            VerticalAlignment="Bottom"
+            ColumnDefinitions="*, *, *, *"
+            Margin="20">
+            <Button
+                Content="Matches"
+                Click="MatchesClick"
+                HorizontalAlignment="Stretch"/>
+            <Button
+                Grid.Column="1"
+                Content="Calendar"
+                Click="CalendarClick"
+                HorizontalAlignment="Stretch"/>
+            <Button
+                Grid.Column="2"
+                Content="Favorites"
+                Click="FavoritesClick"
+                HorizontalAlignment="Stretch"/>
+            <Button
+                Grid.Column="3"
+                Content="Cup"
+                Click="CupClick"
+                HorizontalAlignment="Stretch"/>
+        </Grid>
+    </Panel>
+</UserControl>
