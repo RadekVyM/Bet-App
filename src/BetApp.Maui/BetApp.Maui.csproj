@@ -60,12 +60,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\BetApp.Core\BetApp.Core.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="Views\Controls\" />
-	  <None Remove="Converters\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Views\Controls\" />
-	  <Folder Include="Converters\" />
-	</ItemGroup>
+
 </Project>
