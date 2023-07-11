@@ -62,8 +62,10 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Views\Controls\" />
+	  <None Remove="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\Controls\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 </Project>

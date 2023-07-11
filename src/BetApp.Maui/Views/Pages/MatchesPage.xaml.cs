@@ -11,4 +11,11 @@ public partial class MatchesPage : BaseRootContentPage
 
         InitializeComponent();
 	}
+
+    protected override void OnSafeAreaChanged(Thickness safeArea)
+    {
+        base.OnSafeAreaChanged(safeArea);
+
+        collectionViewFooter.HeightRequest = safeArea.Bottom + 80;
+    }
 }

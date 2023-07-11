@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BetApp.Maui.Views.Controls.TabItem">
+
+    <Grid
+        Background="Transparent">
+        <Label
+            x:Name="label"
+            HorizontalOptions="Center" VerticalOptions="Start"
+            TextColor="White"
+            FontSize="13"
+            Margin="15, 0"/>
+        <BoxView
+            x:Name="boxView"
+            VerticalOptions="End"
+            HeightRequest="3"
+            Opacity="0.01"
+            Color="{StaticResource Secondary}"/>
+    </Grid>
+</ContentView>
+

@@ -34,7 +34,7 @@ public static class MauiProgram
         builder.DisplayContentBehindBars();
 #endif
 #if ANDROID
-        builder.SetDefaultStatusBarAppearance(Colors.Transparent, false);
+        builder.SetDefaultStatusBarAppearance(Colors.Transparent, true);
 #endif
 
         builder.Services.AddTransient<AppShell>();

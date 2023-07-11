@@ -24,6 +24,6 @@ public partial class TabBarItem : ContentView
     {
         var item = bindable as TabBarItem;
 
-        item.icon.TintColor = newValue is true ? Colors.Red : Colors.Black;
+        VisualStateManager.GoToState(item, newValue is true ? "Selected" : "Normal");
     }
 }

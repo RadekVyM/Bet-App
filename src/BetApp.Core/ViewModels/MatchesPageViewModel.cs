@@ -4,6 +4,7 @@ using System.Windows.Input;
 using BetApp.Core.Interfaces.Services;
 using BetApp.Core.Interfaces.ViewModels;
 using BetApp.Core.Models;
+using BetApp.Core.Services;
 
 namespace BetApp.Core.ViewModels;
 
@@ -52,10 +53,10 @@ public class MatchesPageViewModel : BasePageViewModel, IMatchesPageViewModel
 
         SportSelectedCommand = new RelayCommand(parameter =>
         {
-            SelectedSport = parameter?.ToString() ?? "";
-            SportMatches = SelectedSport is null ?
-                sportsService.GetAllSports() :
-                sportsService.GetSport(SelectedSport);
+            SelectedSport = parameter?.ToString();
+            SportMatches = parameter is null ?
+                sportsService.GetAllSports().ToList() :
+                sportsService.GetSport(SelectedSport ?? "").ToList();
         });
         GoToMatchDetailCommand = new RelayCommand(parameter =>
         {

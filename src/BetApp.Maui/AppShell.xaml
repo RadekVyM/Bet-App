@@ -9,7 +9,9 @@
     xmlns:simpleShell="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell"
     xmlns:controls="clr-namespace:BetApp.Maui.Views.Controls"
 
-    x:Name="thisShell">
+    x:Name="thisShell"
+
+    Background="{StaticResource PrimaryBrush}">
 
     <Tab
         Title="Matches"
@@ -52,12 +54,19 @@
     </Tab>
 
     <simpleShell:SimpleShell.RootPageContainer>
-        <Grid>
-            <simpleShell:SimpleNavigationHost/>
+        <Grid
+            x:Name="rootPageContainer"
+            RowDefinitions="auto, *">
+            <controls:AppBar
+                Margin="0, 0, 0, 10"/>
+
+            <simpleShell:SimpleNavigationHost
+                Grid.Row="1"/>
 
             <controls:TabBar
+                x:Name="tabBar"
+                Grid.Row="1"
                 VerticalOptions="End"
-                HeightRequest="80"
                 ItemClicked="ItemClicked"
                 Items="{Binding ShellSections, Source={x:Reference thisShell}}"
                 SelectedItem="{Binding CurrentShellSection, Source={x:Reference thisShell}, Mode=OneWay}"/>

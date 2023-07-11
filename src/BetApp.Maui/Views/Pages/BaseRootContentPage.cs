@@ -10,6 +10,5 @@ public class BaseRootContentPage : BaseContentPage
 
     protected override void OnSafeAreaChanged(Thickness safeArea)
     {
-        base.OnSafeAreaChanged(safeArea);
     }
 }
