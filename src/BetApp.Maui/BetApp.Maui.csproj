@@ -61,4 +61,10 @@
 	  <ProjectReference Include="..\BetApp.Core\BetApp.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Extensions\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Extensions\" />
+	</ItemGroup>
 </Project>
