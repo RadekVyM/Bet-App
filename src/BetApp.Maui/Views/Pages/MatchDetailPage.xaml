@@ -20,7 +20,7 @@
                     RowDefinitions="15, 30, 80, 80, 30, 80, 80, 80, 20"
                     ColumnDefinitions="*, 90, 90"
                     Margin="25, 0"
-                    RowSpacing="10" ColumnSpacing="8">
+                    RowSpacing="10">
                     <Label
                         Grid.Row="1"
                         Text="MATCH ODDS"
@@ -275,9 +275,9 @@
             <simpleCore:Icon
                 Source="back_arrow_icon.png"
                 TintColor="White"
-                VerticalOptions="End" HorizontalOptions="Center"
+                VerticalOptions="End" HorizontalOptions="Start"
                 HeightRequest="26" WidthRequest="26"
-                Margin="24, 0, 0, 20">
+                Margin="24, 0, 0, 5">
                 <simpleCore:Icon.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
                 </simpleCore:Icon.GestureRecognizers>
@@ -287,55 +287,113 @@
                 VerticalOptions="Center"/>
         </Grid>
 
-        <Grid Grid.Row="1" ColumnDefinitions="*,50,*" Margin="0,10">
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="0,25">
-                <Image Source="{Binding Match.FirstTeam.Image}" 
-                                VerticalOptions="Center" HorizontalOptions="Center"
-                                HeightRequest="30" WidthRequest="30"/>
-                <Label Text="{Binding Match.FirstTeam.Name}" TextColor="{DynamicResource PrimaryBackgroundColour}"  VerticalOptions="Center" HorizontalOptions="Center"/>
-            </StackLayout>
-            <StackLayout Spacing="0" Grid.Column="1" VerticalOptions="Center">
-                <BoxView BackgroundColor="Gray" HorizontalOptions="Center" VerticalOptions="End"
-                         WidthRequest="1" HeightRequest="18"/>
-                <Frame BorderColor="Gray" HasShadow="False" BackgroundColor="{DynamicResource SecondaryBackgroundColour}" CornerRadius="5"
-                       HeightRequest="25" Padding="0">
-                    <Label Text="VS" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" FontAttributes="None"/>
-                </Frame>
-                <BoxView BackgroundColor="Gray" HorizontalOptions="Center" VerticalOptions="Start"
-                         WidthRequest="1" HeightRequest="18"/>
-            </StackLayout>
-            <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,25">
-                <Image Source="{Binding Match.SecondTeam.Image}" 
-                                VerticalOptions="Center" HorizontalOptions="Center"
-                                HeightRequest="30" WidthRequest="30"/>
-                <Label Text="{Binding Match.SecondTeam.Name}" TextColor="{DynamicResource PrimaryBackgroundColour}" VerticalOptions="Center" HorizontalOptions="Center"/>
-            </StackLayout>
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="*, 50, *"
+            Margin="0, 10">
+            <VerticalStackLayout
+                VerticalOptions="Center" HorizontalOptions="Center"
+                Margin="0, 25">
+                <Image
+                    Source="{Binding Match.FirstTeam.Image}" 
+                    VerticalOptions="Center" HorizontalOptions="Center"
+                    HeightRequest="30" WidthRequest="30"/>
+                <Label
+                    Text="{Binding Match.FirstTeam.Name}"
+                    TextColor="White"
+                    VerticalOptions="Center" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Column="1"
+                Spacing="0"
+                VerticalOptions="Center">
+                <BoxView
+                    Color="Gray"
+                    HorizontalOptions="Center" VerticalOptions="End"
+                    WidthRequest="1" HeightRequest="18"/>
+                <Border
+                    Stroke="Gray"
+                    Background="{StaticResource PrimaryBrush}"
+                    StrokeShape="{RoundRectangle CornerRadius=5}"
+                    HeightRequest="25"
+                    Padding="0">
+                    <Label
+                        Text="VS"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        TextColor="LightGray"
+                        FontSize="12"
+                        FontAttributes="None"/>
+                </Border>
+                <BoxView
+                    Color="Gray"
+                    HorizontalOptions="Center" VerticalOptions="Start"
+                    WidthRequest="1" HeightRequest="18"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Column="2"
+                HorizontalOptions="Center" VerticalOptions="Center"
+                Margin="0, 25">
+                <Image
+                    Source="{Binding Match.SecondTeam.Image}" 
+                    VerticalOptions="Center" HorizontalOptions="Center"
+                    HeightRequest="30" WidthRequest="30"/>
+                <Label
+                    Text="{Binding Match.SecondTeam.Name}"
+                    TextColor="White"
+                    VerticalOptions="Center" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
         </Grid>
 
-        <Grid Grid.Row="2" VerticalOptions="Start" HorizontalOptions="Center">
-            <BoxView BackgroundColor="{DynamicResource DetailColour}" CornerRadius="30" Opacity="0.2" VerticalOptions="Center"/>
-            <Label Text="{Binding Match.StartTime, Converter={StaticResource OpensInDateTimeConverter}}" TextColor="{DynamicResource DetailColour}" FontSize="15" VerticalTextAlignment="Center" 
-                   VerticalOptions="Center" Margin="20,0"/>
+        <Grid
+            Grid.Row="2"
+            VerticalOptions="Start" HorizontalOptions="Center">
+            <Border
+                Padding="20, 8"
+                Background="#FD7B3822"
+                StrokeShape="{RoundRectangle CornerRadius=22}"
+                StrokeThickness="0"
+                VerticalOptions="Center">
+                <Label
+                    Text="{Binding Match.StartTime, Converter={StaticResource OpensInDateTimeConverter}}"
+                    TextColor="{StaticResource Secondary}"
+                    FontSize="15"
+                    VerticalTextAlignment="Center"/>
+            </Border>
         </Grid>
         
-        <Grid Grid.Row="3" ColumnDefinitions="0.9*,1.2*,1.1*" ColumnSpacing="5" Margin="30,0">
-            <controls:TabItem x:Name="firstTabItem" Text="{x:Static pages:MatchDetailPage.FirtsTabText}" BindingContext="{Binding Source={RelativeSource Mode=Self}, Path=Text}"
-                           IsSelected="{Binding Source={RelativeSource AncestorType={x:Type pages:MatchDetailPage}}, Path=SelectedTab, 
-                                                Converter={StaticResource SelectionConverter}, ConverterParameter={x:Reference firstTabItem}}">
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="0.9*, 1.2*, 1.1*"
+            ColumnSpacing="5"
+            Margin="30, 0">
+            <controls:TabItem
+                x:Name="firstTabItem"
+                Text="{x:Static pages:MatchDetailPage.FirtsTabText}"
+                BindingContext="{Binding Source={RelativeSource Mode=Self}, Path=Text}"
+                IsSelected="{Binding Source={RelativeSource AncestorType={x:Type pages:MatchDetailPage}}, Path=SelectedTab, 
+                    Converter={StaticResource SelectionConverter}, ConverterParameter={x:Reference firstTabItem}}">
                 <controls:TabItem.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TabTapped"/>
                 </controls:TabItem.GestureRecognizers>
             </controls:TabItem>
-            <controls:TabItem x:Name="secondTabItem" Grid.Column="1" Text="{x:Static pages:MatchDetailPage.SecondTabText}" BindingContext="{Binding Source={RelativeSource Mode=Self}, Path=Text}"
-                           IsSelected="{Binding Source={RelativeSource AncestorType={x:Type pages:MatchDetailPage}}, Path=SelectedTab, 
-                                                Converter={StaticResource SelectionConverter}, ConverterParameter={x:Reference secondTabItem}}">
+            <controls:TabItem
+                x:Name="secondTabItem"
+                Grid.Column="1"
+                Text="{x:Static pages:MatchDetailPage.SecondTabText}"
+                BindingContext="{Binding Source={RelativeSource Mode=Self}, Path=Text}"
+                IsSelected="{Binding Source={RelativeSource AncestorType={x:Type pages:MatchDetailPage}}, Path=SelectedTab, 
+                    Converter={StaticResource SelectionConverter}, ConverterParameter={x:Reference secondTabItem}}">
                 <controls:TabItem.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TabTapped"/>
                 </controls:TabItem.GestureRecognizers>
             </controls:TabItem>
-            <controls:TabItem x:Name="thirdTabItem" Grid.Column="2" Text="{x:Static pages:MatchDetailPage.ThirdTabText}" BindingContext="{Binding Source={RelativeSource Mode=Self}, Path=Text}"
-                           IsSelected="{Binding Source={RelativeSource AncestorType={x:Type pages:MatchDetailPage}}, Path=SelectedTab, 
-                                                Converter={StaticResource SelectionConverter}, ConverterParameter={x:Reference thirdTabItem}}">
+            <controls:TabItem
+                x:Name="thirdTabItem"
+                Grid.Column="2"
+                Text="{x:Static pages:MatchDetailPage.ThirdTabText}"
+                BindingContext="{Binding Source={RelativeSource Mode=Self}, Path=Text}"
+                IsSelected="{Binding Source={RelativeSource AncestorType={x:Type pages:MatchDetailPage}}, Path=SelectedTab, 
+                    Converter={StaticResource SelectionConverter}, ConverterParameter={x:Reference thirdTabItem}}">
                 <controls:TabItem.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TabTapped"/>
                 </controls:TabItem.GestureRecognizers>
@@ -349,6 +407,7 @@
             Background="White">
             <ScrollView
                 x:Name="scrollView"
+                Orientation="Vertical"
                 VerticalScrollBarVisibility="Never"/>
         </Border>
     </Grid>

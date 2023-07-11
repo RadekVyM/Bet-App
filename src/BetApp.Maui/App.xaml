@@ -15,6 +15,7 @@
 
             
             <converters:SelectionConverter x:Key="SelectionConverter"/>
+            <converters:OpensInDateTimeConverter x:Key="OpensInDateTimeConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 
