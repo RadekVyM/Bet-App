@@ -2,7 +2,9 @@
 
 **.NET MAUI** implementation of [Bet App](https://dribbble.com/shots/14384464-Bet-App) design by [Manoj Rajput](https://dribbble.com/manojrajput).
 
-This project demonstrates how to create **custom navigation experience and controls** using the [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) library.
+https://github.com/RadekVyM/Bet-App/assets/65116078/af3a3026-19d5-4519-840d-c44881ed1957
+
+This project demonstrates how to create **custom navigation experience and custom controls** using the [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) library.
 
 ## Original design
 [![Dribbble Design](./Images/original_design.png)](https://dribbble.com/shots/14384464-Bet-App)
