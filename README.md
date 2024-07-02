@@ -1,6 +1,6 @@
 # Bet App
 
-**.NET MAUI** implementation of [Bet App](https://dribbble.com/shots/14384464-Bet-App) design by [Manoj Rajput](https://dribbble.com/manojrajput).
+**.NET MAUI** implementation of [Bet App](https://dribbble.com/shots/14384464-Bet-App) design by [MindInventory UI/UX](https://dribbble.com/MindInventoryUIUX).
 
 https://github.com/RadekVyM/Bet-App/assets/65116078/af3a3026-19d5-4519-840d-c44881ed1957
 
