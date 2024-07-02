@@ -1,61 +1,69 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using BetApp.Core.Interfaces.Services;
+using BetApp.Core.Interfaces.ViewModels;
+using BetApp.Core.Models;
+using BetApp.Core.Services;
 
-namespace BetApp.Core
+namespace BetApp.Core.ViewModels;
+
+public class MatchesPageViewModel : BasePageViewModel, IMatchesPageViewModel
 {
-    public class MatchesPageViewModel : BasePageViewModel, IMatchesPageViewModel
+    private string? selectedSport;
+    private IEnumerable<Sport> sportMatches = new List<Sport>();
+    private IEnumerable<string> allSportNames = new List<string>();
+
+    public IEnumerable<string> AllSportNames
     {
-        IEnumerable<Sport> sportMatches;
-        string selectedSport;
-        private IEnumerable<string> allSportNames;
-
-        public IEnumerable<string> AllSportNames
+        get => allSportNames;
+        set
         {
-            get => allSportNames;
-            set
-            {
-                allSportNames = value;
-                OnPropertyChanged(nameof(AllSportNames));
-            }
+            allSportNames = value;
+            OnPropertyChanged(nameof(AllSportNames));
         }
-        public IEnumerable<Sport> SportMatches
+    }
+    public IEnumerable<Sport> SportMatches
+    {
+        get => sportMatches;
+        set
         {
-            get => sportMatches;
-            set
-            {
-                sportMatches = value;
-                OnPropertyChanged(nameof(SportMatches));
-            }
+            sportMatches = value;
+            OnPropertyChanged(nameof(SportMatches));
         }
-        public string SelectedSport
+    }
+    public string? SelectedSport
+    {
+        get => selectedSport;
+        set
         {
-            get => selectedSport;
-            set
-            {
-                selectedSport = value;
-                OnPropertyChanged(nameof(SelectedSport));
-            }
+            selectedSport = value;
+            OnPropertyChanged(nameof(SelectedSport));
         }
+    }
 
-        public ICommand SportSelectedCommand { get; private set; }
-        public ICommand GoToMatchDetailCommand { get; private set; }
+    public ICommand SportSelectedCommand { get; private set; }
+    public ICommand GoToMatchDetailCommand { get; private set; }
 
-        public MatchesPageViewModel(INavigationService navigationService, ISportsService sportsService)
+
+    public MatchesPageViewModel(INavigationService navigationService, ISportsService sportsService)
+    {
+        SportMatches = sportsService.GetAllSports().ToList();
+        AllSportNames = SportMatches.Select(s => s.Name).ToList();
+
+        SportSelectedCommand = new RelayCommand(parameter =>
         {
-            SportMatches = sportsService.GetAllSports().ToList();
-            AllSportNames = SportMatches.Select(s => s.Name).ToList();
+            SelectedSport = parameter?.ToString();
+            SportMatches = parameter is null ?
+                sportsService.GetAllSports().ToList() :
+                sportsService.GetSport(SelectedSport ?? "").ToList();
+        });
+        GoToMatchDetailCommand = new RelayCommand(parameter =>
+        {
+            if (parameter is not Match match)
+                return;
 
-            SportSelectedCommand = new RelayCommand(parameter =>
-            {
-                SelectedSport = parameter != null ? parameter.ToString() : null;
-
-                if (SelectedSport == null)
-                    SportMatches = sportsService.GetAllSports();
-                else
-                    SportMatches = sportsService.GetSport(SelectedSport);
-            });
-            GoToMatchDetailCommand = new RelayCommand(parameter => navigationService.Push(PagesEnum.MatchDetailPage, parameter));
-        }
+            navigationService.GoTo(PageType.MatchDetailPage, new MatchDetailPageParameters(match));
+        });
     }
 }

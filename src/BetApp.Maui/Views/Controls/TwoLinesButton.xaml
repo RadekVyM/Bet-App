@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<simpleCore:ContentButton
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    x:Class="BetApp.Maui.Views.Controls.TwoLinesButton"
+    x:Name="thisButton"
+
+    StrokeShape="{RoundRectangle CornerRadius=8}">
+
+    <VerticalStackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <Label
+            HorizontalOptions="Center"
+            TextColor="{Binding Path=TextColor, Source={x:Reference thisButton}}"
+            FontFamily="OpenSansExtraBold"
+            FontSize="13"
+            Text="{Binding Path=FirstLine, Source={x:Reference thisButton}}" />
+        <Label
+            HorizontalOptions="Center"
+            TextColor="{Binding Path=TextColor, Source={x:Reference thisButton}}"
+            FontFamily="OpenSansBold"
+            FontSize="13"
+            Text="{Binding Path=SecondLine, Source={x:Reference thisButton}}" />
+    </VerticalStackLayout>
+</simpleCore:ContentButton>

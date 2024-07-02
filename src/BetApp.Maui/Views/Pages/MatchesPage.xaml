@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseRootContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BetApp.Maui.Views.Pages"
+    xmlns:viewModels="clr-namespace:BetApp.Core.Interfaces.ViewModels;assembly=BetApp.Core"
+    xmlns:models="clr-namespace:BetApp.Core.Models;assembly=BetApp.Core"
+    xmlns:controls="clr-namespace:BetApp.Maui.Views.Controls"
+    x:Class="BetApp.Maui.Views.Pages.MatchesPage"
+
+    x:DataType="viewModels:IMatchesPageViewModel"
+
+    Title="MatchesPage"
+    Background="Transparent">
+
+    <Grid RowDefinitions="40, *" BackgroundColor="Transparent" RowSpacing="0">
+        <BoxView Grid.Row="1" CornerRadius="35,35,0,0" Color="White"/>
+
+        <CollectionView
+            ItemsSource="{Binding AllSportNames}"
+            VerticalOptions="Start"
+            HeightRequest="40"
+            HorizontalScrollBarVisibility="Never">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.Header>
+                <HorizontalStackLayout Spacing="0">
+                    <ContentView
+                        CompressedLayout.IsHeadless="True"
+                        WidthRequest="30"/>
+                    <controls:TabItem
+                        x:Name="tabItem"
+                        Text="HOME"
+                        BindingContext="{x:Null}"
+                        IsSelected="{Binding
+                            Source={RelativeSource AncestorType={x:Type viewModels:IMatchesPageViewModel}},
+                            Path=SelectedSport,
+                            Converter={StaticResource SelectionConverter},
+                            ConverterParameter={x:Reference tabItem}}">
+                        <controls:TabItem.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IMatchesPageViewModel}}, Path=SportSelectedCommand}"
+                                CommandParameter="{Binding .}"/>
+                        </controls:TabItem.GestureRecognizers>
+                    </controls:TabItem>
+                </HorizontalStackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.Footer>
+                <ContentView
+                    CompressedLayout.IsHeadless="True"
+                    WidthRequest="30"/>
+            </CollectionView.Footer>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="x:String">
+                    <ContentView>
+                        <controls:TabItem
+                            x:Name="tabItem"
+                            Text="{Binding .}"
+                            Margin="5, 0, 0, 0"
+                            IsSelected="{Binding
+                                Source={RelativeSource AncestorType={x:Type viewModels:IMatchesPageViewModel}},
+                                Path=SelectedSport, 
+                                Converter={StaticResource SelectionConverter},
+                                ConverterParameter={x:Reference tabItem}}">
+                            <controls:TabItem.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IMatchesPageViewModel}}, Path=SportSelectedCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </controls:TabItem.GestureRecognizers>
+                        </controls:TabItem>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Border
+            Grid.Row="1"
+            StrokeThickness="0"
+            StrokeShape="{RoundRectangle CornerRadius='35, 35, 0, 0'}"
+            Background="White">
+            <CollectionView
+                x:Name="collectionView"
+                ItemsSource="{Binding SportMatches}"
+                IsGrouped="True"
+                Background="White">
+                <!-- TODO: On iOS, group headers do not disappear when ItemsSource is changed -->
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate
+                        x:DataType="models:Sport">
+                        <ContentView
+                            Padding="25, 0">
+                            <Label
+                                Text="{Binding Name}"
+                                Margin="0,5"
+                                FontSize="18"
+                                FontFamily="OpenSansExtraBold" />
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="models:Match">
+                        <ContentView
+                            Padding="25, 0">
+                            <controls:MatchItemView
+                                Margin="0, 10"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:IMatchesPageViewModel}}, Path=GoToMatchDetailCommand}"
+                                CommandParameter="{Binding .}" />
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.Header>
+                    <ContentView
+                        CompressedLayout.IsHeadless="True"
+                        HeightRequest="25"/>
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                    <ContentView
+                        x:Name="collectionViewFooter"
+                        CompressedLayout.IsHeadless="True"
+                        HeightRequest="90"/>
+                </CollectionView.Footer>
+            </CollectionView>
+        </Border>
+
+        <!--
+        <BoxView Grid.Row="2" BackgroundColor="{DynamicResource SecondaryBackgroundColour}" VerticalOptions="Start" HeightRequest="36"
+                 Clip="{Binding CollectionViewClip, Source={RelativeSource AncestorType={x:Type local:MatchesPage}}}"/>
+        -->
+    </Grid>
+</pages:BaseRootContentPage>

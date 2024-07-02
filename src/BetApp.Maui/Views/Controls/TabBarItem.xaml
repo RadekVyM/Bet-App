@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+
+    x:Class="BetApp.Maui.Views.Controls.TabBarItem"
+
+    x:DataType="BaseShellItem">
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroupList>
+            <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="Selected">
+                    <VisualState.Setters>
+                        <Setter
+                            TargetName="button"
+                            Property="Border.Background"
+                            Value="{StaticResource PrimaryBrush}" />
+                        <Setter
+                            TargetName="button"
+                            Property="Border.Shadow"
+                            Value="{Shadow Brush={StaticResource PrimaryBrush}, Opacity=0.3, Offset='0,20', Radius={OnPlatform Android=30}}" />
+                        <Setter
+                            TargetName="icon"
+                            Property="simpleCore:Icon.TintColor"
+                            Value="White" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateGroupList>
+    </VisualStateManager.VisualStateGroups>
+
+    <Grid
+        Padding="0, 0, 0, 20">
+        <simpleCore:ContentButton
+            x:Name="button"
+            Padding="13"
+            HorizontalOptions="Center" VerticalOptions="Start"
+            WidthRequest="50" HeightRequest="50"
+            Background="White"
+            StrokeThickness="0"
+            StrokeShape="{RoundRectangle CornerRadius=25}">
+            <simpleCore:Icon
+                x:Name="icon"
+                Source="{Binding Icon}"
+                TintColor="{StaticResource Tertiary}"/>
+        </simpleCore:ContentButton>
+    </Grid>
+</ContentView>

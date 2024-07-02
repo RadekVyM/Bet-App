@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseRootContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BetApp.Maui.Views.Pages"
+    x:Class="BetApp.Maui.Views.Pages.CupPage"
+    Title="Cup Page"
+    Background="Transparent">
+
+    <Border
+        StrokeShape="{RoundRectangle CornerRadius='35, 35, 0, 0'}"
+        Background="White"
+        Padding="25">
+        <VerticalStackLayout>
+            <Label 
+                Text="Cup Page"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="18"
+                TextTransform="Uppercase" />
+        </VerticalStackLayout>
+    </Border>
+</pages:BaseRootContentPage>

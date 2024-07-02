@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<simpleCore:ContentButton
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:models="clr-namespace:BetApp.Core.Models;assembly=BetApp.Core"
+    x:Class="BetApp.Maui.Views.Controls.MatchItemView"
+    x:DataType="models:Match"
+
+    StrokeThickness="0"
+    StrokeShape="{RoundRectangle CornerRadius=15}"
+    Background="#f5f6f9">
+
+    <simpleCore:ContentButton.Resources>
+        <Style Class="TeamStack" TargetType="VerticalStackLayout">
+            <Setter Property="Margin" Value="0, 25" />
+            <Setter Property="Spacing" Value="12" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style Class="TeamImage" TargetType="Image">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="30" />
+            <Setter Property="HeightRequest" Value="30" />
+        </Style>
+        <Style Class="TeamLabel" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontFamily" Value="OpenSansExtraBold" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </simpleCore:ContentButton.Resources>
+
+    <Grid ColumnDefinitions="*, 50, *">
+        <VerticalStackLayout
+            StyleClass="TeamStack">
+            <Image
+                Source="{Binding FirstTeam.Image}"
+                StyleClass="TeamImage" />
+            <Label
+                Text="{Binding FirstTeam.Name}"
+                StyleClass="TeamLabel" />
+        </VerticalStackLayout>
+        <Border
+            Grid.Column="1"
+            Stroke="LightGray"
+            StrokeShape="{RoundRectangle CornerRadius=5}"
+            Background="White"
+            VerticalOptions="Center"
+            HeightRequest="25"
+            Padding="0">
+            <Label
+                Text="VS"
+                TextColor="LightGray"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontSize="12"
+                FontAttributes="None" />
+        </Border>
+        <VerticalStackLayout
+            Grid.Column="2"
+            StyleClass="TeamStack">
+            <Image
+                Source="{Binding SecondTeam.Image}"
+                StyleClass="TeamImage" />
+            <Label
+                Text="{Binding SecondTeam.Name}"
+                StyleClass="TeamLabel" />
+        </VerticalStackLayout>
+    </Grid>
+</simpleCore:ContentButton>

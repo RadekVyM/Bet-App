@@ -1,12 +1,27 @@
 ﻿using System.ComponentModel;
+using BetApp.Core.Interfaces.ViewModels;
 
-namespace BetApp.Core
+namespace BetApp.Core.ViewModels;
+
+public class BasePageViewModel : BaseViewModel, IBasePageViewModel
 {
-    public class BasePageViewModel : INotifyPropertyChanged, IBasePageViewModel
+    public virtual void OnApplyParameters(IParameters parameters)
     {
-        public virtual void OnPagePushing(params object[] parameters) { }
+    }
 
-        public void OnPropertyChanged(string property) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        public event PropertyChangedEventHandler PropertyChanged;
+    public virtual void OnApplyFirstParameters(IParameters parameters)
+    {
+    }
+
+    public virtual void OnApplyOtherParameters(IParameters parameters)
+    {
+    }
+
+    public virtual void OnNavigatedTo()
+    {
+    }
+
+    public virtual void OnNavigatedFrom()
+    {
     }
 }
