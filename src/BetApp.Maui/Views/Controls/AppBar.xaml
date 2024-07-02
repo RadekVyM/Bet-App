@@ -11,7 +11,7 @@
             Source="betlogo.png"
             Margin="24, 0, 0, 0"
             HorizontalOptions="Start" VerticalOptions="Center"
-            WidthRequest="60" HeightRequest="20"
+            WidthRequest="55" HeightRequest="20"
             Aspect="AspectFit"/>
 
         <HorizontalStackLayout

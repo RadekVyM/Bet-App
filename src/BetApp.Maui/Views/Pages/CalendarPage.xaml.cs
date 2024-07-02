@@ -11,4 +11,9 @@ public partial class CalendarPage : BaseRootContentPage
 
         InitializeComponent();
     }
+
+    protected override void OnSafeAreaChanged(Thickness safeArea)
+    {
+        collectionViewFooter.HeightRequest = 80 + safeArea.Bottom;
+    }
 }

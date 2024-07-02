@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:BetApp.Core.Interfaces.ViewModels;assembly=BetApp.Core"
+    xmlns:models="clr-namespace:BetApp.Core.Models;assembly=BetApp.Core"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    xmlns:controls="clr-namespace:BetApp.Maui.Views.Controls"
+    x:Class="BetApp.Maui.Views.Controls.MatchDetail"
+    
+    CompressedLayout.IsHeadless="True"
+
+    x:DataType="viewModels:IMatchDetailPageViewModel">
+
+    <ContentView.Resources>
+        <Style Class="TeamStack" TargetType="Grid">
+            <Setter Property="ColumnDefinitions" Value="auto, *" />
+            <Setter Property="Margin" Value="15, 0, 0, 0" />
+            <Setter Property="ColumnSpacing" Value="10" />
+        </Style>
+        <Style Class="TeamImage" TargetType="Image">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="WidthRequest" Value="28" />
+            <Setter Property="HeightRequest" Value="28" />
+        </Style>
+        <Style Class="TeamLabel" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="OpenSansExtraBold" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="{StaticResource Primary}" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+            <Setter Property="Grid.Column" Value="1" />
+        </Style>
+        <Style Class="SectionHeadingLabel" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="OpenSansExtraBold" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style Class="SectionHeadingFirstLabel" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="Margin" Value="15, 0, 0, 0" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style Class="SectionHeadingSecondLabel" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="Margin" Value="0, 0, 15, 0" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style Class="BackgroundBoxView" TargetType="BoxView">
+            <Setter Property="Grid.ColumnSpan" Value="3" />
+            <Setter Property="Color" Value="#f5f6f9" />
+            <Setter Property="CornerRadius" Value="15" />
+        </Style>
+    </ContentView.Resources>
+
+    <Grid
+        RowDefinitions="15, 30, 80, 80, 30, 80, 80, 80, 20"
+        ColumnDefinitions="*, 90, 90"
+        Margin="25, 0"
+        RowSpacing="10" ColumnSpacing="8">
+        <Label
+            Grid.Row="1"
+            Text="MATCH ODDS"
+            StyleClass="SectionHeadingLabel" />
+        <Label
+            Grid.Row="1" Grid.Column="1"
+            Text="BACK"
+            StyleClass="SectionHeadingLabel, SectionHeadingFirstLabel" />
+        <Label
+            Grid.Row="1" Grid.Column="2"
+            Text="LAY"
+            StyleClass="SectionHeadingLabel, SectionHeadingSecondLabel" />
+
+        <Label
+            Grid.Row="4"
+            Text="SESSION RUNS"
+            StyleClass="SectionHeadingLabel" />
+        <Label
+            Grid.Row="4" Grid.Column="1"
+            StyleClass="SectionHeadingLabel, SectionHeadingFirstLabel"
+            Text="NO" />
+        <Label
+            Grid.Row="4" Grid.Column="2"
+            StyleClass="SectionHeadingLabel, SectionHeadingSecondLabel"
+            Text="YES" />
+
+        <BoxView
+            Grid.Row="2"
+            StyleClass="BackgroundBoxView" />
+        <BoxView
+            Grid.Row="3"
+            StyleClass="BackgroundBoxView" />
+        <BoxView
+            Grid.Row="5"
+            StyleClass="BackgroundBoxView" />
+        <BoxView
+            Grid.Row="6"
+            Grid.RowSpan="2"
+            StyleClass="BackgroundBoxView" />
+
+        <Grid
+            Grid.Row="2"
+            StyleClass="TeamStack">
+            <Image
+                StyleClass="TeamImage"
+                Source="{Binding Match.FirstTeam.Image}" />
+            <Label
+                StyleClass="TeamLabel"
+                Text="{Binding Match.FirstTeam.Name}" />
+        </Grid>
+        
+        <controls:TwoLinesButton
+            Grid.Row="2"
+            Grid.Column="1"
+            Background="#c8ecff"
+            Margin="15, 15, 0, 15"
+            FirstLine="2.00"
+            SecondLine="31,000" />
+        <controls:TwoLinesButton
+            Grid.Row="2"
+            Grid.Column="2"
+            Background="#ddcef5"
+            Margin="0, 15, 15, 15"
+            FirstLine="2.00"
+            SecondLine="31,000" />
+
+        <Grid
+            Grid.Row="3"
+            StyleClass="TeamStack">
+            <Image
+                StyleClass="TeamImage"
+                Source="{Binding Match.SecondTeam.Image}" />
+            <Label
+                StyleClass="TeamLabel"
+                Text="{Binding Match.SecondTeam.Name}" />
+        </Grid>
+
+        <controls:TwoLinesButton
+            Grid.Row="3"
+            Grid.Column="1"
+            Background="#c8ecff"
+            Margin="15, 15, 0, 15"
+            FirstLine="2.00"
+            SecondLine="31,000" />
+        <controls:TwoLinesButton
+            Grid.Row="3"
+            Grid.Column="2"
+            Background="#ddcef5"
+            Margin="0, 15, 15, 15"
+            FirstLine="2.00"
+            SecondLine="31,000" />
+
+        <Label
+            Grid.Row="5"
+            Text="MATCH 1ST OVER RUN"
+            FontSize="11"
+            FontFamily="OpenSansExtraBold"
+            VerticalOptions="Center"
+            Margin="15, 0, 0, 0"/>
+
+        <controls:TwoLinesButton
+            Grid.Row="5"
+            Grid.Column="1"
+            Background="#46A3D4"
+            TextColor="White"
+            Margin="15, 15, 0, 15"
+            FirstLine="6"
+            SecondLine="100" />
+        <controls:TwoLinesButton
+            Grid.Row="5"
+            Grid.Column="2"
+            Background="#8353D1"
+            TextColor="White"
+            Margin="0, 15, 15, 15"
+            FirstLine="7"
+            SecondLine="100" />
+
+        <Grid
+            Grid.Row="6" Grid.ColumnSpan="3"
+            ColumnDefinitions="85, 50, *" RowDefinitions="*, *"
+            RowSpacing="8" ColumnSpacing="8"
+            Margin="15, 15, 15, 0">
+            <Label
+                Text="ODDS (H-J)"
+                FontSize="13"
+                FontFamily="OpenSansBold"
+                VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label
+                Grid.Column="1"
+                Text="RUNS"
+                FontSize="13"
+                FontFamily="OpenSansBold"
+                VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label
+                Grid.Column="2"
+                Text="STAKE"
+                FontSize="13"
+                FontFamily="OpenSansBold"
+                VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label
+                Grid.Column="2"
+                Text="MAX MKT: 21,750"
+                FontSize="13"
+                FontFamily="OpenSansBold"
+                VerticalOptions="Center" HorizontalOptions="End"
+                Opacity="0.4"/>
+            <Label
+                Grid.Row="1"
+                Text="100"
+                FontSize="13"
+                FontFamily="OpenSansExtraBold"
+                VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Label
+                Grid.Row="1" Grid.Column="1"
+                Text="183"
+                FontSize="13"
+                FontFamily="OpenSansExtraBold"
+                VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Border
+                Grid.Row="1" Grid.Column="2"
+                Background="#DEE1EB"
+                StrokeThickness="0"
+                StrokeShape="{RoundRectangle CornerRadius=5}">
+                <Label
+                    Text="MAX BET: 4,350"
+                    FontSize="13"
+                    FontFamily="OpenSansBold"
+                    VerticalOptions="Center" HorizontalOptions="Start"
+                    Opacity="0.4"
+                    Margin="8, 0, 0, 0"/>
+            </Border>
+        </Grid>
+
+        <Grid
+            Grid.Row="7" Grid.ColumnSpan="3"
+            RowDefinitions="*, *" ColumnDefinitions="*, *, *"
+            RowSpacing="8" ColumnSpacing="8"
+            Margin="15, 0, 15, 15">
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="BackgroundColor" Value="#DEE1EB"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                </Style>
+            </Grid.Resources>
+            <Button Text="+1000"/>
+            <Button Grid.Column="1" Text="+2000"/>
+            <Button Grid.Column="2" Text="+3000"/>
+            <Button Grid.Row="1" Text="+4000"/>
+            <Button Grid.Row="1" Grid.Column="1" Text="+5000"/>
+            <Button Grid.Row="1" Grid.Column="2" Text="+10000"/>
+        </Grid>
+    </Grid>
+</ContentView>

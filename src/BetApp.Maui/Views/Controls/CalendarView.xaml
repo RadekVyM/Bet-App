@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+    x:Class="BetApp.Maui.Views.Controls.CalendarView"
+    x:Name="thisCalendarView">
+    
+    <Grid
+        RowDefinitions="60, 20, *">
+        <Grid
+            VerticalOptions="Start"
+            HeightRequest="35">
+            <Label
+                Text="{Binding Source={x:Reference thisCalendarView}, Path=CurrentMonthDateTime, Converter={StaticResource CalendarDateTimeConverter}}"
+                FontSize="22"
+                TextColor="White"
+                FontFamily="OpenSansExtraBold"
+                VerticalOptions="Center" />
+            <HorizontalStackLayout
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Spacing="15">
+                <simpleCore:ContentButton
+                    Clicked="LeftTapped"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Background="{StaticResource Secondary}"
+                    HeightRequest="30"
+                    WidthRequest="30"
+                    StrokeShape="{RoundRectangle CornerRadius=15}">
+                    <simpleCore:Icon
+                        Source="left_arrow_icon.png"
+                        TintColor="White"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        HeightRequest="12"
+                        WidthRequest="15"
+                        Margin="0, 0, 2, 0" />
+                </simpleCore:ContentButton>
+                <simpleCore:ContentButton
+                    Clicked="RightTapped"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Background="{StaticResource Secondary}"
+                    HeightRequest="30"
+                    WidthRequest="30"
+                    StrokeShape="{RoundRectangle CornerRadius=15}">
+                    <simpleCore:Icon
+                        Source="right_arrow_icon.png"
+                        TintColor="White"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        HeightRequest="12"
+                        WidthRequest="15"
+                        Margin="2, 0, 0, 0" />
+                </simpleCore:ContentButton>
+            </HorizontalStackLayout>
+        </Grid>
+        
+        <Grid
+            ColumnDefinitions="*, *, *, *, *, *, *"
+            Grid.Row="1"
+            Margin="-6, 0">
+            <Grid.Resources>
+                <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+                    <Setter Property="VerticalOptions" Value="Start"/>
+                    <Setter Property="HorizontalOptions" Value="Center"/>
+                    <Setter Property="TextColor" Value="White"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </Grid.Resources>
+            <Label Text="MON"/>
+            <Label Text="TUE" Grid.Column="1"/>
+            <Label Text="WED" Grid.Column="2"/>
+            <Label Text="THU" Grid.Column="3"/>
+            <Label Text="FRI" Grid.Column="4"/>
+            <Label Text="SAT" Grid.Column="5"/>
+            <Label Text="SUN" Grid.Column="6"/>
+        </Grid>
+        
+        <CollectionView
+            x:Name="collectionView"
+            Grid.Row="2"
+            Margin="-4, 10, -4, 0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="7" Orientation="Vertical" VerticalItemSpacing="4" HorizontalItemSpacing="4"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView
+                        CompressedLayout.IsHeadless="True">
+                        <simpleCore:ContentButton
+                            Clicked="DayItemTapped"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            HeightRequest="32"
+                            WidthRequest="32"
+                            Background="Transparent"
+                            StrokeShape="{RoundRectangle CornerRadius=16}">
+                            <simpleCore:ContentButton.Triggers>
+                                <DataTrigger
+                                    TargetType="simpleCore:ContentButton"
+                                    Binding="{Binding Path=IsSelected}"
+                                    Value="true">
+                                    <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+                                </DataTrigger>
+                            </simpleCore:ContentButton.Triggers>
+                            <Label
+                                Text="{Binding Day}"
+                                TextColor="White"
+                                FontSize="13"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center">
+                                <Label.Triggers>
+                                    <DataTrigger
+                                        TargetType="Label"
+                                        Binding="{Binding Path=IsSelectedMonth}"
+                                        Value="false">
+                                        <Setter Property="Opacity" Value="0.4"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </simpleCore:ContentButton>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentView>

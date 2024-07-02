@@ -15,13 +15,13 @@
                 <VisualState x:Name="Selected">
                     <VisualState.Setters>
                         <Setter
-                            TargetName="buttonBorder"
+                            TargetName="button"
                             Property="Border.Background"
                             Value="{StaticResource PrimaryBrush}" />
                         <Setter
-                            TargetName="buttonBorder"
+                            TargetName="button"
                             Property="Border.Shadow"
-                            Value="{Shadow Brush={StaticResource PrimaryBrush}, Opacity=0.3, Offset='0,20'}" />
+                            Value="{Shadow Brush={StaticResource PrimaryBrush}, Opacity=0.3, Offset='0,20', Radius={OnPlatform Android=30}}" />
                         <Setter
                             TargetName="icon"
                             Property="simpleCore:Icon.TintColor"
@@ -34,22 +34,18 @@
 
     <Grid
         Padding="0, 0, 0, 20">
-        <Border
-            x:Name="buttonBorder"
+        <simpleCore:ContentButton
+            x:Name="button"
+            Padding="13"
             HorizontalOptions="Center" VerticalOptions="Start"
             WidthRequest="50" HeightRequest="50"
             Background="White"
             StrokeThickness="0"
             StrokeShape="{RoundRectangle CornerRadius=25}">
-            <simpleCore:ContentButton
-                x:Name="button"
-                Padding="13">
-                <simpleCore:Icon
-                    x:Name="icon"
-                    Source="{Binding Icon}"
-                    TintColor="{StaticResource Tertiary}"/>
-            </simpleCore:ContentButton>
-        </Border>
+            <simpleCore:Icon
+                x:Name="icon"
+                Source="{Binding Icon}"
+                TintColor="{StaticResource Tertiary}"/>
+        </simpleCore:ContentButton>
     </Grid>
 </ContentView>
-

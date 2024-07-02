@@ -12,16 +12,18 @@ namespace BetApp.Maui;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("OpenSans-Bold.ttf", "OpenSansBold");
+                fonts.AddFont("OpenSans-ExtraBold.ttf", "OpenSansExtraBold");
+            });
 
         builder.UseSimpleShell();
         builder.UseSimpleToolkit();
@@ -53,6 +55,5 @@ public static class MauiProgram
         builder.Services.AddTransient<ICalendarPageViewModel, CalendarPageViewModel>();
 
         return builder.Build();
-	}
+    }
 }
-

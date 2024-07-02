@@ -1,15 +1,11 @@
-﻿namespace BetApp.Maui.Views.Controls;
+﻿using Maui.BindableProperty.Generator.Core;
+
+namespace BetApp.Maui.Views.Controls;
 
 public partial class TabBarItem : ContentView
 {
-    public static readonly BindableProperty IsSelectedProperty =
-        BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TabBarItem), false, BindingMode.OneWay, propertyChanged: OnIsSelectedChanged);
-
-    public bool IsSelected
-    {
-        get => (bool)GetValue(IsSelectedProperty);
-        set => SetValue(IsSelectedProperty, value);
-    }
+     [AutoBindable(DefaultValue = "false")]
+    readonly bool isSelected;
 
     public event EventHandler Clicked { add => button.Clicked += value; remove => button.Clicked -= value; }
 
@@ -20,10 +16,8 @@ public partial class TabBarItem : ContentView
 	}
 
 
-    private static void OnIsSelectedChanged(BindableObject bindable, object oldValue, object newValue)
+    partial void OnIsSelectedChanged(bool value)
     {
-        var item = bindable as TabBarItem;
-
-        VisualStateManager.GoToState(item, newValue is true ? "Selected" : "Normal");
+        VisualStateManager.GoToState(this, value is true ? "Selected" : "Normal");
     }
 }

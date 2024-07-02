@@ -157,10 +157,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Label">
+    <Style x:Key="BaseLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="#212837" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -175,6 +175,9 @@
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
+    </Style>
+
+    <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
     </Style>
 
     <Style TargetType="ListView">

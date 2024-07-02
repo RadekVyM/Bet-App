@@ -2,7 +2,10 @@
 <ContentView
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="BetApp.Maui.Views.Controls.TabItem">
+    x:Class="BetApp.Maui.Views.Controls.TabItem"
+    x:Name="thisTabItem"
+    
+    CompressedLayout.IsHeadless="True">
 
     <Grid
         Background="Transparent">
@@ -11,13 +14,32 @@
             HorizontalOptions="Center" VerticalOptions="Start"
             TextColor="White"
             FontSize="13"
-            Margin="15, 0"/>
+            Margin="12, 0"
+            Text="{Binding Path=Text, Source={x:Reference thisTabItem}}">
+            <Label.Triggers>
+                <DataTrigger
+                    TargetType="Label"
+                    Binding="{Binding Source={x:Reference thisTabItem}, Path=IsSelected}"
+                    Value="true">
+                    <Setter Property="TextColor" Value="{StaticResource Secondary}" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
         <BoxView
             x:Name="boxView"
             VerticalOptions="End"
             HeightRequest="3"
             Opacity="0.01"
-            Color="{StaticResource Secondary}"/>
+            Color="{StaticResource Secondary}">
+            <BoxView.Triggers>
+                <DataTrigger
+                    TargetType="BoxView"
+                    Binding="{Binding Source={x:Reference thisTabItem}, Path=IsSelected}"
+                    Value="true">
+                    <Setter Property="Opacity" Value="1" />
+                </DataTrigger>
+            </BoxView.Triggers>
+        </BoxView>
     </Grid>
 </ContentView>
 

@@ -58,7 +58,7 @@
             x:Name="rootPageContainer"
             RowDefinitions="auto, *">
             <controls:AppBar
-                Margin="0, 0, 0, 10"/>
+                Margin="0, 0, 0, 25"/>
 
             <simpleShell:SimpleNavigationHost
                 Grid.Row="1"/>

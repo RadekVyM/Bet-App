@@ -1,29 +1,30 @@
 # Bet App
-A **Xamarin.Forms** application based on [Bet App](https://dribbble.com/shots/14384464-Bet-App) design by [Manoj Rajput](https://dribbble.com/manojrajput).
+
+**.NET MAUI** implementation of [Bet App](https://dribbble.com/shots/14384464-Bet-App) design by [Manoj Rajput](https://dribbble.com/manojrajput).
+
+This project demonstrates how to create **custom navigation experience and controls** using the [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) library.
 
 ## Original design
-[![Dribbble Design](https://github.com/RadekVyM/Bet-App/blob/main/Images/original%20design.png)](https://dribbble.com/shots/14384464-Bet-App)
+[![Dribbble Design](./Images/original_design.png)](https://dribbble.com/shots/14384464-Bet-App)
 
-## My Xamarin.Forms implementation
-The application uses Shell navigation and works only on Android. Only the [Xamarin.Forms Shapes API](https://docs.microsoft.com/cs-cz/xamarin/xamarin-forms/user-interface/shapes/) is used for custom 2D graphics.
+## Installation
 
-<p float="left">
-  <img src="https://github.com/RadekVyM/Bet-App/blob/main/Images/betapp.gif" data-canonical-src="https://github.com/RadekVyM/Bet-App/blob/main/Images/betapp.gif" width="400" height="800"/>
+First, make sure you have your Visual Studio and .NET 8 environment set up for .NET MAUI development. If not, follow the [setup instructions](https://learn.microsoft.com/dotnet/maui/get-started/installation). Then make sure you have your [Android](https://learn.microsoft.com/dotnet/maui/get-started/first-app?pivots=devices-android) or [iOS](https://learn.microsoft.com/dotnet/maui/get-started/first-app?pivots=devices-ios) platform set up for deployment of the application.
 
-  <img src="https://github.com/RadekVyM/Bet-App/blob/main/Images/betapp%20calendar.gif" data-canonical-src="https://github.com/RadekVyM/Bet-App/blob/main/Images/betapp%20calendar.gif" width="400" height="800" />
+Once everything is set up, you can clone the repo and run the application via Visual Studio or Visual Studio Code.
+
+Here are some resources to learn more about .NET MAUI:
+
+- [Official website](https://dotnet.microsoft.com/apps/maui)
+- [Microsoft Learn](https://learn.microsoft.com/dotnet/maui/what-is-maui)
+- [.NET MAUI GitHub repository](https://github.com/dotnet/maui)
+
+## Features
+
+Only .NET MAUI APIs, my [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit) library and the [Maui.BindableProperty.Generator](https://github.com/rrmanzano/maui-bindableproperty-generator) library were used to create this sample.
+
+<p align="center">
+    <img src="./Images/android_betapp.webp" width="226">
+    &nbsp;&nbsp;
+    <img src="./Images/ios_betapp.webp" width="226">
 </p>
-Feel free to take this code and do what you will, but please make sure you acknowledge myself and also the original designer.
-
-## Used packages
-
-[Xamarin.Forms](https://www.nuget.org/packages/Xamarin.Forms)
-
-[Xamarin.Essentials](https://www.nuget.org/packages/Xamarin.Essentials)
-
-[Sharpnado.Shadows](https://www.nuget.org/packages/Sharpnado.Shadows/)
-
-[Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/)
-
-[Xamarin.FFImageLoading.Forms](https://www.nuget.org/packages/Xamarin.FFImageLoading.Forms/)
-
-[![snppts](https://camo.githubusercontent.com/cd35f0ca9d14d9c9a7c4f35e9321fc32fa6369570292080e6c44fe8522768139/68747470733a2f2f7777772e736e707074732e6465762f696d672f736e707074732d62616467652e6a7067)](https://snppts.dev/)

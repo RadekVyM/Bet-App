@@ -2,7 +2,6 @@
 using BetApp.Core.Interfaces.ViewModels;
 using BetApp.Maui.Extensions;
 using BetApp.Maui.Views.Controls;
-using Microsoft.Maui.Controls.Shapes;
 
 namespace BetApp.Maui.Views.Pages;
 
