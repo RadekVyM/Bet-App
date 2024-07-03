@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using BetApp.Core.Interfaces.Services;
 using BetApp.Core.Interfaces.ViewModels;
 using BetApp.Core.Models;
@@ -21,8 +19,8 @@ public class CalendarPageViewModel : BasePageViewModel, ICalendarPageViewModel
         }
     }
 
-    public ICommand SelectedDateChangedCommand { get; private set; }
-    public ICommand GoToMatchDetailCommand { get; private set; }
+    public ICommand SelectedDateChangedCommand { get; private init; }
+    public ICommand GoToMatchDetailCommand { get; private init; }
 
 
     public CalendarPageViewModel(INavigationService navigationService, ISportsService sportsService)
@@ -31,7 +29,8 @@ public class CalendarPageViewModel : BasePageViewModel, ICalendarPageViewModel
 
         SelectedDateChangedCommand = new RelayCommand(parameter =>
         {
-            Matches = sportsService.GetMatchesByDate((DateTime)parameter);
+            if (parameter is DateTime dateTimeParameter)
+                Matches = sportsService.GetMatchesByDate(dateTimeParameter);
         });
         GoToMatchDetailCommand = new RelayCommand(parameter =>
         {

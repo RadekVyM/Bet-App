@@ -19,7 +19,7 @@ public class MatchDetailPageViewModel : BasePageViewModel, IMatchDetailPageViewM
         }
     }
 
-    public ICommand GoBackCommand { get; private set; }
+    public ICommand GoBackCommand { get; private init; }
 
 
     public MatchDetailPageViewModel(INavigationService navigationService)

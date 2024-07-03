@@ -1,18 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using BetApp.Core.Interfaces.Services;
 using BetApp.Core.Interfaces.ViewModels;
 using BetApp.Core.Models;
-using BetApp.Core.Services;
 
 namespace BetApp.Core.ViewModels;
 
 public class MatchesPageViewModel : BasePageViewModel, IMatchesPageViewModel
 {
     private string? selectedSport;
-    private IEnumerable<Sport> sportMatches = new List<Sport>();
-    private IEnumerable<string> allSportNames = new List<string>();
+    private IEnumerable<Sport> sportMatches = [];
+    private IEnumerable<string> allSportNames = [];
 
     public IEnumerable<string> AllSportNames
     {
@@ -42,8 +39,8 @@ public class MatchesPageViewModel : BasePageViewModel, IMatchesPageViewModel
         }
     }
 
-    public ICommand SportSelectedCommand { get; private set; }
-    public ICommand GoToMatchDetailCommand { get; private set; }
+    public ICommand SportSelectedCommand { get; private init; }
+    public ICommand GoToMatchDetailCommand { get; private init; }
 
 
     public MatchesPageViewModel(INavigationService navigationService, ISportsService sportsService)
